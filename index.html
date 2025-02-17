@@ -313,9 +313,73 @@
         }
 
         .logo {
-            height: 50px;
+            height: 80px;
             width: auto;
             object-fit: contain;
+        }
+
+        .footer {
+            background: var(--secondary);
+            color: white;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section {
+            animation: fadeIn 1s ease-out;
+        }
+
+        .footer-section h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: lineGrow 1s ease-out forwards;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
 
         .nav-links {
@@ -350,7 +414,7 @@
 </head>
 <body>
     <nav>
-        <a href="#" class="nav-logo">
+        <a href="https://www.e-woodproducts.be/" class="nav-logo">
             <img src="ewood-logo-website-1_200x174.avif" alt="E-Wood Products Logo" class="logo">
         </a>
         <ul class="nav-links">
@@ -407,5 +471,40 @@
             </div>
         </div>
     </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li>BV E-Products Europe</li>
+                    <li>Patijntjestraat 107</li>
+                    <li>9000 Gent</li>
+                    <li>Email: support@e-woodproducts.com</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Informatie</h3>
+                <ul>
+                    <li><a href="https://www.e-woodproducts.be/">Over ons</a></li>
+                    <li><a href="https://www.e-woodproducts.be/">Verzending</a></li>
+                    <li><a href="https://www.e-woodproducts.be/">Retourbeleid</a></li>
+                    <li><a href="https://www.e-woodproducts.be/">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Producten</h3>
+                <ul>
+                    <li><a href="https://www.e-woodproducts.be/collections/rozenbogen">Rozenbogen</a></li>
+                    <li><a href="https://www.e-woodproducts.be/">Alle producten</a></li>
+                    <li><a href="https://www.e-woodproducts.be/">Montageservice</a></li>
+                    <li><a href="https://www.e-woodproducts.be/">Custom werk</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Pergola-kopen.be - Een E-Wood Products website</p>
+        </div>
+    </footer>
 </body>
 </html>
