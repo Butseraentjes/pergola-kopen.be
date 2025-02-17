@@ -1,1 +1,391 @@
 
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pergola-kopen.be - Prachtige Houten Rozenbogen</title>
+    <style>
+        :root {
+            --primary: #96774F;
+            --secondary: #755C3B;
+            --accent: #B39B7B;
+            --background: #FDF6F0;
+            --text: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .vine-decoration {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .vine {
+            position: absolute;
+            width: 2px;
+            background: var(--accent);
+            opacity: 0.3;
+            transform-origin: top;
+            animation: grow 3s ease-out forwards;
+        }
+
+        .vine:nth-child(1) {
+            height: 300px;
+            left: 10%;
+            animation-delay: 0.5s;
+        }
+
+        .vine:nth-child(2) {
+            height: 400px;
+            right: 10%;
+            animation-delay: 1s;
+        }
+
+        .vine:nth-child(3) {
+            height: 250px;
+            left: 90%;
+            animation-delay: 1.5s;
+        }
+
+        .content {
+            text-align: center;
+            z-index: 2;
+            max-width: 800px;
+            animation: fadeIn 2s ease-out;
+            background: rgba(253, 246, 240, 0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: slideUp 1s ease-out;
+            color: var(--secondary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent);
+            animation: lineGrow 1s ease-out 1s forwards;
+            transform: scaleX(0);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--text);
+            animation: slideUp 1s ease-out 0.3s backwards;
+            margin-bottom: 2rem;
+        }
+
+        .description {
+            margin: 2rem 0;
+            font-size: 1.1rem;
+            animation: fadeIn 1s ease-out 0.6s backwards;
+            color: var(--text);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            animation: float 3s infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            background: var(--secondary);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .products {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.8));
+            z-index: 1;
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            color: white;
+            z-index: 2;
+            transform: translateY(100%);
+            transition: 0.3s;
+        }
+
+        .product-card:hover .product-info {
+            transform: translateY(0);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--secondary);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--accent);
+            margin: 1rem auto;
+            animation: width 2s ease-out;
+        }
+
+        @keyframes grow {
+            from {
+                transform: scaleY(0);
+            }
+            to {
+                transform: scaleY(1);
+            }
+        }
+
+        @keyframes lineGrow {
+            to {
+                transform: scaleX(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem;
+            background: rgba(117, 92, 59, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Rozenbogen</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="https://www.e-woodproducts.be/collections/rozenbogen" target="_blank">Webshop</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="vine-decoration">
+            <div class="vine"></div>
+            <div class="vine"></div>
+            <div class="vine"></div>
+        </div>
+        <div class="content">
+            <h1 class="title">Pergola-kopen.be</h1>
+            <p class="subtitle">Exclusieve Houten Rozenbogen</p>
+            <div class="description">
+                <p>Transformeer uw tuin met onze prachtige, handgemaakte houten rozenbogen. Perfect voor het creëren van een romantische sfeer en ideaal voor klimplanten en rozen. Onze rozenbogen zijn vervaardigd uit duurzaam hout en worden gekenmerkt door hun elegante design en robuuste constructie.</p>
+                <p>✓ Duurzaam Douglas hout</p>
+                <p>✓ Vakkundige afwerking</p>
+                <p>✓ Eenvoudige montage</p>
+                <p>✓ Nederlandse kwaliteit</p>
+            </div>
+            <a href="https://www.e-woodproducts.be/collections/rozenbogen" target="_blank" class="cta-button">Ontdek ons assortiment</a>
+        </div>
+    </section>
+
+    <section class="products" id="products">
+        <h2 class="section-title">Onze Rozenbogen</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="pergola-120-800-b_1284x1285.webp" alt="Klassieke Pergola" class="product-image">
+                <div class="product-info">
+                    <h3>Klassieke Pergola</h3>
+                    <p>Elegante pergola voor uw tuinpad of terras</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="rozenboog-klein-1_1047x1047.webp" alt="Compacte Rozenboog" class="product-image">
+                <div class="product-info">
+                    <h3>Compacte Rozenboog</h3>
+                    <p>Perfect voor kleinere tuinen</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="rozenboog-vk-1_1050x1050.webp" alt="Luxe Rozenboog" class="product-image">
+                <div class="product-info">
+                    <h3>Luxe Rozenboog</h3>
+                    <p>Stijlvolle blikvanger voor uw tuin</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
